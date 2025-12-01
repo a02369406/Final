@@ -50,6 +50,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const MONGODB_URI = process.env.MONGODB_URI;
 if (!MONGODB_URI) {
   console.error("Error: MONGODB_URI environment variable is not set");
+  console.error("Please set MONGODB_URI in your environment variables");
   process.exit(1);
 }
 
