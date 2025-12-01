@@ -1,0 +1,1 @@
+I sed an API from https://randomuser.me/ that generates random users for testing purposed

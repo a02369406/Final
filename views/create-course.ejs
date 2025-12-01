@@ -1,0 +1,153 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Create Course</h1>
+          <p class="mb-0">Add a new course to the system.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li class="current">Create Course</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<!-- Create Course Section -->
+<section id="create-course" class="section">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title mb-4">Create New Course</h3>
+            
+            <% if (errorMessage) { %>
+            <div class="alert alert-danger"><%= errorMessage %></div>
+            <% } %>
+
+            <form action="/admin/courses/create" method="post" enctype="multipart/form-data" class="php-email-form">
+              <div class="row gy-4">
+                <div class="col-md-12">
+                  <label for="title" class="form-label">Course Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    placeholder="Course Title"
+                    value="<%= formData && formData.title ? formData.title : '' %>"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="summary" class="form-label">Summary</label>
+                  <textarea
+                    class="form-control"
+                    id="summary"
+                    name="summary"
+                    rows="3"
+                    placeholder="Brief summary of the course"
+                    required
+                  ><%= formData && formData.summary ? formData.summary : '' %></textarea>
+                </div>
+
+                <div class="col-md-12">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    rows="5"
+                    placeholder="Detailed course description"
+                    required
+                  ><%= formData && formData.description ? formData.description : '' %></textarea>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="price" class="form-label">Price</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    class="form-control"
+                    id="price"
+                    name="price"
+                    placeholder="0.00"
+                    value="<%= formData && formData.price ? formData.price : '' %>"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <label for="capacity" class="form-label">Capacity</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="capacity"
+                    name="capacity"
+                    placeholder="Maximum number of students"
+                    value="<%= formData && formData.capacity ? formData.capacity : '' %>"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="schedule" class="form-label">Schedule</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="schedule"
+                    name="schedule"
+                    placeholder="e.g., Monday & Wednesday, 6:00 PM - 8:00 PM"
+                    value="<%= formData && formData.schedule ? formData.schedule : '' %>"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="trainer" class="form-label">Trainer</label>
+                  <select class="form-control" id="trainer" name="trainer" required>
+                    <option value="">Select a trainer</option>
+                    <% trainers.forEach((trainer) => { %>
+                    <option value="<%= trainer._id %>" <%= formData && formData.trainer && formData.trainer === trainer._id.toString() ? 'selected' : '' %>><%= trainer.name %></option>
+                    <% }); %>
+                  </select>
+                </div>
+
+                <div class="col-md-12">
+                  <label for="image" class="form-label">Course Image</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                    accept="image/jpeg,image/jpg,image/png"
+                    required
+                  />
+                  <small class="form-text text-muted">Accepted formats: JPG, JPEG, PNG</small>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-primary btn-lg">Create Course</button>
+                  <a href="/courses" class="btn btn-secondary btn-lg ms-2">Cancel</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Create Course Section -->
+
