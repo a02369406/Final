@@ -1,4 +1,5 @@
 const path = require("path");
+const slugify = require("slugify");
 const Course = require("../models/course-model");
 const Trainer = require("../models/trainer-model");
 const User = require("../models/user-model");
@@ -83,6 +84,9 @@ exports.postCreateCourse = async (req, res, next) => {
 
     const imageFileName = req.file.filename;
 
+    // Generate slug from title
+    const slug = slugify(title, { lower: true, trim: true });
+
     const course = new Course({
       title: title,
       summary: summary,
@@ -94,6 +98,7 @@ exports.postCreateCourse = async (req, res, next) => {
       image: imageFileName,
       registrants: [],
       likes: 0,
+      slug: slug, // Explicitly set slug
     });
 
     await course.save();
@@ -154,6 +159,11 @@ exports.postEditCourse = async (req, res, next) => {
     }
 
     const { title, summary, description, price, capacity, schedule, trainer } = req.body;
+
+    // Update slug if title changed
+    if (course.title !== title) {
+      course.slug = slugify(title, { lower: true, trim: true });
+    }
 
     course.title = title;
     course.summary = summary;

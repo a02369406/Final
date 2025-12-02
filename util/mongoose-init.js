@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const slugify = require("slugify");
 const Trainer = require("../models/trainer-model");
 const Course = require("../models/course-model");
 const Event = require("../models/event-model");
@@ -132,90 +131,8 @@ async function initializeDatabase() {
     const trainers = await Trainer.insertMany(trainerData);
     console.log(`Created ${trainers.length} trainers`);
 
-    const courseData = [
-      {
-        title: "Complete Web Development Bootcamp",
-        image: "course-1.jpg",
-        summary: "Master full-stack web development with modern technologies",
-        description: "Learn HTML, CSS, JavaScript, React, Node.js, and MongoDB. Build real-world projects and deploy them to production. This comprehensive course covers everything from frontend to backend development.",
-        price: 299.99,
-        capacity: 50,
-        registrants: [],
-        schedule: "Monday & Wednesday, 6:00 PM - 8:00 PM",
-        likes: 125,
-        trainer: trainers[0]._id,
-        slug: slugify("Complete Web Development Bootcamp", { lower: true, trim: true })
-      },
-      {
-        title: "Data Science & Machine Learning",
-        image: "course-2.jpg",
-        summary: "Learn data analysis, visualization, and machine learning",
-        description: "Explore Python, pandas, NumPy, scikit-learn, and TensorFlow. Work with real datasets and build machine learning models. Perfect for beginners and intermediate learners.",
-        price: 349.99,
-        capacity: 40,
-        registrants: [],
-        schedule: "Tuesday & Thursday, 7:00 PM - 9:00 PM",
-        likes: 98,
-        trainer: trainers[1]._id,
-        slug: slugify("Data Science & Machine Learning", { lower: true, trim: true })
-      },
-      {
-        title: "Digital Marketing Mastery",
-        image: "course-3.jpg",
-        summary: "Master SEO, social media, and content marketing",
-        description: "Learn proven strategies for growing your online presence. Cover SEO optimization, social media marketing, email campaigns, and analytics. Includes hands-on projects.",
-        price: 249.99,
-        capacity: 60,
-        registrants: [],
-        schedule: "Saturday, 10:00 AM - 2:00 PM",
-        likes: 87,
-        trainer: trainers[2]._id,
-        slug: slugify("Digital Marketing Mastery", { lower: true, trim: true })
-      },
-      {
-        title: "Cloud Computing Fundamentals",
-        image: "course-4.jpg",
-        summary: "AWS, Azure, and GCP essentials for cloud professionals",
-        description: "Get certified in cloud computing with hands-on labs. Learn infrastructure as code, containerization, serverless computing, and cloud security best practices.",
-        price: 399.99,
-        capacity: 35,
-        registrants: [],
-        schedule: "Monday & Friday, 5:00 PM - 7:00 PM",
-        likes: 112,
-        trainer: trainers[3]._id,
-        slug: slugify("Cloud Computing Fundamentals", { lower: true, trim: true })
-      },
-      {
-        title: "UI/UX Design Principles",
-        image: "course-5.jpg",
-        summary: "Create beautiful and intuitive user interfaces",
-        description: "Learn design thinking, user research, wireframing, prototyping, and usability testing. Work with design tools like Figma and Adobe XD. Build a portfolio of projects.",
-        price: 279.99,
-        capacity: 45,
-        registrants: [],
-        schedule: "Wednesday & Friday, 6:30 PM - 8:30 PM",
-        likes: 76,
-        trainer: trainers[4]._id,
-        slug: slugify("UI/UX Design Principles", { lower: true, trim: true })
-      },
-      {
-        title: "Cybersecurity Essentials",
-        image: "course-6.jpg",
-        summary: "Protect systems and networks from cyber threats",
-        description: "Learn ethical hacking, network security, cryptography, and incident response. Hands-on labs with real-world scenarios. Prepare for security certifications.",
-        price: 329.99,
-        capacity: 30,
-        registrants: [],
-        schedule: "Tuesday & Thursday, 6:00 PM - 8:00 PM",
-        likes: 94,
-        trainer: trainers[5]._id,
-        slug: slugify("Cybersecurity Essentials", { lower: true, trim: true })
-      }
-    ];
-
-    console.log("Creating courses...");
-    const courses = await Course.insertMany(courseData);
-    console.log(`Created ${courses.length} courses`);
+    // Courses will be created by admins through the UI
+    console.log("Skipping course creation - courses should be created by admins");
 
     console.log("Creating events...");
     const events = await Event.insertMany(eventData);
@@ -227,7 +144,6 @@ async function initializeDatabase() {
 
     console.log("\nDatabase initialization complete!");
     console.log(`- Trainers: ${trainers.length}`);
-    console.log(`- Courses: ${courses.length}`);
     console.log(`- Events: ${events.length}`);
     console.log(`- Testimonials: ${testimonials.length}`);
 

@@ -1,1 +1,1 @@
-I've the example given in the intructions to use dnodemailer to send emails for when you get a response to to your contact. 
+I've the example given in the intructions to use nodemailer to send emails for when you get a response to to your contact. 
