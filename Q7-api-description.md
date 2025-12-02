@@ -1,1 +1,1 @@
-I sed an API from https://randomuser.me/ that generates random users for testing purposed
+I used an API from https://randomuser.me/ that generates random users for testing purposed

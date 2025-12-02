@@ -1,7 +1,5 @@
-// Load environment variables
 require("dotenv").config();
 
-// Import libraries
 const path = require("path");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
@@ -9,14 +7,11 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo").default;
 
-// Import Middleware
 const requestLogger = require("./middleware");
 
-// Import Models
 const Course = require("./models/course-model");
 const Trainer = require("./models/trainer-model");
 
-// Import Routes
 const homeRoutes = require("./routes/home-routes");
 const trainerRoutes = require("./routes/trainer-routes");
 const eventRoutes = require("./routes/event-routes");
@@ -27,24 +22,19 @@ const adminRoutes = require("./routes/admin-routes");
 const apiRoutes = require("./routes/api-routes");
 const externalApiRoutes = require("./routes/external-api-routes");
 
-// Import Error Controller
 const errorController = require("./controllers/error-controller");
 
 const app = express();
 
-// Set the view engine to ejs
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-// Layout settings
 app.use(expressLayouts);
 app.set("layout", "layout");
 
-// Middleware
 app.use(requestLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Serve static files from public directory
 app.use(express.static(path.join(__dirname, "public")));
 
 const MONGODB_URI = process.env.MONGODB_URI;

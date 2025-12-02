@@ -1,7 +1,5 @@
-// Import sequelized db
 const sequelize = require("./database");
 
-// Import models
 const Trainer = require("../models/trainer-model");
 const Event = require("../models/event-model");
 const Course = require("../models/course-model");
@@ -9,7 +7,6 @@ const Contact = require("../models/contact-model");
 const Testimonial = require("../models/testimonial-model");
 const User = require("../models/user-model");
 
-// Import Data
 const trainerData = require("./trainers.json");
 const eventData = require("./events.json");
 const courseData = require("./courses.json");
@@ -17,13 +14,10 @@ const testimonialData = require("./testimonials.json");
 const userData = require("./users.json");
 const contactData = require("./contacts.json");
 
-// Define associations
 Course.belongsTo(Trainer, { foreignKey: "trainer", as: "trainerId" });
 Trainer.hasMany(Course, { foreignKey: "trainer" });
 
-// Sync sequelize instance with the database
 sequelize
-  // .sync()
   .sync({ force: true })
   .then(() => {
     console.log("Database synced successfully!\nCreating trainers...");

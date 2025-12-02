@@ -84,7 +84,7 @@ exports.postCreateCourse = async (req, res, next) => {
 
     const imageFileName = req.file.filename;
 
-    // Generate slug from title
+    
     const slug = slugify(title, { lower: true, trim: true });
 
     const course = new Course({
@@ -98,7 +98,7 @@ exports.postCreateCourse = async (req, res, next) => {
       image: imageFileName,
       registrants: [],
       likes: 0,
-      slug: slug, // Explicitly set slug
+      slug: slug, 
     });
 
     await course.save();
@@ -160,7 +160,6 @@ exports.postEditCourse = async (req, res, next) => {
 
     const { title, summary, description, price, capacity, schedule, trainer } = req.body;
 
-    // Update slug if title changed
     if (course.title !== title) {
       course.slug = slugify(title, { lower: true, trim: true });
     }
